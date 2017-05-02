@@ -24,9 +24,9 @@ namespace AjaxDemo.Controllers
             return Content((firstNumber + secondNumber).ToString(), "text/plain");
         }
 
-        public IActionResult DisplayObject()
+        public IActionResult DisplayObject(string city, string country, int id)
         {
-            Destination destination = new Destination("Tokyo", "Japan", 1);
+            Destination destination = new Destination(city, country, id);
             return Json(destination);
         }
 

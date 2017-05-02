@@ -29,6 +29,22 @@
 
 <div class="segment">
     <h2>Using JSON to display an object</h2>
+
+    <form id="display-object">
+        <div class="form-group">
+            <label for="city">City</label>
+            <input id="city" class="form-control" type="text">
+        </div>
+        <div class="form-group">
+            <label for="country">Country</label>
+            <input id="country" class="form-control" type="text">
+        </div>
+        <div class="form-group">
+            <label for="id">Id</label>
+            <input id="id" class="form-control" type="text">
+        </div>
+    </form>
+
     <h4 class="display-object clickable">Display object</h4>
     <div id="result3"></div>
 </div>
@@ -52,7 +68,7 @@
                 }
             });
         });
-
+        
         $('.sum').click(function () {
 
             var firstNumberInput = parseInt($("#first-number").val());
@@ -69,10 +85,16 @@
         });
 
         $('.display-object').click(function () {
+
+            var countryInput = $("#country").val();
+            var cityInput = $("#city").val();
+            var idInput = $("#id").val();
+
             $.ajax({
                 type: 'GET',
                 dataType: 'json',
                 contentType: 'application/json',
+                data: { city: cityInput, country: countryInput, id: idInput },
                 url: '@Url.Action("DisplayObject")',
                 success: function (result) {
                     var resultString = 'Id: ' + result.id + '<br>City: ' + result.city + '<br>Country: ' + result.country;
